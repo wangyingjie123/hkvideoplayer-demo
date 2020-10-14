@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>hkvideo-player~一款超好用的视频播放器</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/svg+xml" href="https://github.githubassets.com/favicons/favicon.svg">
+    <link rel="stylesheet" href="./index.css" type="text/css"></link>
+</head>
+<body>
+<div class="content">
+    <div class="left">
+        <div class="input-group">
+            <input type="text" id="input" class="input" placeholder="请输入要发送的弹幕">
+        </div>
+        <div class="btn-group">
+            <button class="btn-item" id="sendDanmu">发送弹幕</button>
+            <button id='button' class="btn-item">打开小窗</button>
+        </div>
+    </div>
+    <div class="video">
+        <div id="app"></div>
+    </div>
+    <div class="right">
+        <div class="danmuel">
+            <span class="danmuel-text">
+                这是一条彩色的弹幕噢~
+            </span>
+        </div>
+    </div>
+</div>
+<script src="./browser/index.js"></script>
+<script>
+const Player = window.Player;
+const player = new Player({
+    id: 'app',
+    // diyDuration: 300, // 自定义时长
+    cssFullscreen: true,
+    fluid: true, // 流式布局
+    ignores: ['replay'], // 禁止某个插件执行
+    screenShot: true, // 屏幕截图--有跨域限制，url需要是本地blob地址
+    playbackRate: [0.75, 1, 1.5, 2], // 倍速播放
+    videopip: true, // 原生画中画
+    pipConfig: { // 小窗大小及位置
+        width: 580,
+        height: 326.25,
+        // left: 120,
+        // top: 80,
+        // bottom: 100,
+        // right: 100,
+        // prevPos: true 
+    },
+    url: 'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4'
+});
+
+// initDanmu(player);
+document.querySelector('#sendDanmu').onclick = () => {
+    sendDanmu(player);
+};
+document.querySelector('#button').onclick = function () {
+    player.getPIP();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+.content {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    height: 1600px;
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.left, .right {
+    width: 20%;
+    padding: 15px;
+}
+.video {
+    flex: 1;
+}
+.input {
+    box-sizing: border-box;
+    margin: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    font-feature-settings: "tnum";
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    padding: 4px 11px;
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    line-height: 1.5715;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    transition: all .3s;
+}
+.btn-group {
+    margin-top: 10px;
+}
+.btn-item {
+    padding: 0 10px;
+    cursor: pointer;
+}
+/* 弹幕 */
+.hkplayer-skin-default .danmuel, .right .danmuel {
+    font-size: 23px;
+    line-height: 42px;
+    height: 42px;
+    color: rgb(251, 240, 118);
+    border-radius: 20px;
+    overflow: hidden;
+    background-image: linear-gradient(to right, rgb(255, 83, 253) 0px, rgb(251, 240, 118) 100%);
+    -webkit-text-fill-color: transparent;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: none;
+}
+.hkplayer-skin-default .danmuel-text, .right .danmuel-text {
+    height: 100%;
+    background: inherit;
+    -webkit-text-fill-color: inherit;
+    padding: 0 10px;
+}
