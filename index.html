@@ -52,6 +52,33 @@ const player = new Player({
         // right: 100,
         // prevPos: true 
     },
+    danmu: {
+        comments: [
+            {
+                duration: 10000,
+                id: '1',
+                start: 3000,
+                txt: '长弹幕长弹幕长弹幕长弹幕长弹幕',
+                style: {  //弹幕自定义样式
+                    color: '#ff9500',
+                    fontSize: '20px',
+                    border: 'solid 1px #ff9500',
+                    borderRadius: '50px',
+                    padding: '5px 11px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                }
+            }
+        ],
+        area: {  // 弹幕显示区域
+            start: 0, // 区域顶部到播放器顶部所占播放器高度的比例
+            end: 0.8 // 区域底部到播放器顶部所占播放器高度的比例
+        },
+        // panel: true, // 弹幕设置面板
+        mouseControl: true, // 鼠标控制
+        mouseControlPause: true, // 鼠标移入暂停
+        closeDefaultBtn: false, // 关闭播放器提供的默认开关
+        defaultOff: false // 开启此项后弹幕不会初始化，默认初始化弹幕
+    },
     url: 'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4'
 });
 
@@ -61,6 +88,37 @@ document.querySelector('#sendDanmu').onclick = () => {
 };
 document.querySelector('#button').onclick = function () {
     player.getPIP();
+}
+function sendDanmu() {
+    const inputs = document.querySelector('#input');
+    if (!inputs.value) {
+        alert('弹幕内容不能为空');
+        return;
+    }
+    if (!player.danmu) {
+        alert('弹幕容器还未初始化');
+        return;
+    }
+    player.danmu.sendComment({
+        duration: 10000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
+        realTime: true, // 提前插入该弹幕
+        // prior: true,
+        id: Math.random() + '', // 弹幕id，需唯一
+        color: false, // 该条弹幕为彩色弹幕，默认false
+        txt: document.querySelector('#input').value, // 弹幕文字内容和el参数冲突
+        style: {  // 弹幕自定义样式
+            color: 'rgb(251, 240, 118)',
+            transform: 'translate3d(948px, 0px, 1px)',
+            backgroundImage: 'linear-gradient(to right, rgb(255, 83, 253) 0px, rgb(251, 240, 118) 100%)',
+            '-webkit-text-fill-color': 'transparent',
+            'background-repeat': 'repeat',
+            'background-clip': 'text',
+            fontSize: '20px',
+            borderRadius: '50px',
+            padding: '5px 11px',
+        }
+    })
+    inputs.value = '';
 }
 </script>
 </body>
